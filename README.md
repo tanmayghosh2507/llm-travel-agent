@@ -7,10 +7,10 @@ I am an avid traveller and AI enthusiast. I like to plan my travels diligently a
 - If you like this, and have some add-ons or improvement ideas, please feel free to check this out, change and create a pull request. I would absoultely appreciate your contributions.
 
 ## Tags
-- Streamlit
+- [Streamlit](https://docs.streamlit.io/develop/api-reference/widgets)
 - FastAPI
-- HuggingFace
-- MistralAI
+- [HuggingFace](https://huggingface.co/)
+- [MistralAI](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)
 
 ## How to use this app?
 
@@ -32,6 +32,11 @@ uvicorn planner:app --reload
 # In a separate terminal, run the frontend
 streamlit run form.py
 ```
+
+### 3. Run the app
+In your browser, open `localhost:8501` to naviagte to AI Travel Planner
+- See a demo here:
+![Demo](demo_video.webm)
 
 ### 3. Customizations
 - If you want to use another model, check for more models in [HuggingFace models](https://huggingface.co/models)

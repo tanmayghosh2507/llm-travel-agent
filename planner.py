@@ -14,9 +14,9 @@ class TravelRequest(BaseModel):
     destination: str
     start: str
     end: str
-    commute: List[str]
-    focus: List[str]
-    specifics: str
+    commute: List[str] = []
+    focus: List[str] = []
+    specifics: str = ""
 
 def call_llm(prompt: str):
     try:
@@ -47,12 +47,12 @@ You are a professional travel planner.
 
 Create a detailed travel itinerary.
 
-Destination: {req.destination};
-Start Date: {req.start};
-End Date: {req.end};
-Preferred commute: {", ".join(req.commute)};
-Key interests: {", ".join(req.focus)};
-Specific requests: {req.specifics};
+Destination: {req.destination}
+Starting: {req.start}
+Ending: {req.end}
+Preferred commute: {", ".join(req.commute) if req.commute else "No preference"}
+Key interests: {", ".join(req.focus) if req.focus else "No specific focus"}
+Specific requests: {req.specifics if req.specifics else "None"}
 
 Rules:
 - Provide a day-by-day plan
