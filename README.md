@@ -35,10 +35,8 @@ streamlit run form.py
 
 ### 3. Run the app
 In your browser, open `localhost:8501` to naviagte to AI Travel Planner
-- See a demo here:
-![Demo](demo_video.webm)
 
-### 3. Customizations
+### 4. Customizations
 - If you want to use another model, check for more models in [HuggingFace models](https://huggingface.co/models)
 - Check if it requires access and apply for same. You can manage all model accesses in HuggingFace [here](https://huggingface.co/settings/gated-repos)
 - Once finalized, update the [planner.py](planner.py) file with the model id.
