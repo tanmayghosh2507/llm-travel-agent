@@ -1,4 +1,5 @@
 import datetime
+from constants import GENERATE_PLAN_ENDPOINT, WEATHER_FORECAST_ENDPOINT
 import streamlit as st
 import requests
 
@@ -12,7 +13,7 @@ if "step" not in st.session_state:
 if "answers" not in st.session_state:
     st.session_state.answers = {}
 
-st.title("✈️ AI Travel Planner")
+st.title("✈️ Sneha's AI Travel Planner")
 st.markdown("Plan your perfect trip with us! Just input the details and we will plan as per your preferences.")
 
 def get_page_headline() -> str:
@@ -164,8 +165,27 @@ elif st.session_state.step == 6:
 
     with st.spinner("Generating your travel plan..."):
         try:
+            response = requests.get(
+                WEATHER_FORECAST_ENDPOINT.format(city=st.session_state.answers['location'], start_date=st.session_state.answers['days'][0], end_date=st.session_state.answers['days'][1]),
+                timeout=150
+            )
+
+            print("Weather Forecast Result:", response)
+            if len(response.text) > 0:
+                st.write(response.text)
+            else:
+                st.error("Weather forecast couldn't be retrieved!")
+                
+        except requests.exceptions.Timeout:
+            st.error("Request timed out. Please try again in a moment.")
+        except requests.exceptions.ConnectionError:
+            st.error("Connection error.")
+        except Exception as e:
+            st.error(f"Error: {str(e)}")
+
+        try:
             response = requests.post(
-                "http://localhost:8000/generate-plan",
+                GENERATE_PLAN_ENDPOINT,
                 json=payload,
                 timeout=150
             )
@@ -185,3 +205,10 @@ elif st.session_state.step == 6:
             st.error("Connection error. Make sure the backend server is running on http://localhost:8000")
         except Exception as e:
             st.error(f"Error: {str(e)}")
+    
+    if st.button("Make changes to this plan"):
+        st.session_state.step = 5
+        st.rerun()
+    elif st.button("Start over with a fresh plan"):
+        st.session_state.step = 1
+        st.rerun()

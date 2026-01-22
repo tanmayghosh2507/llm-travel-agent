@@ -11,6 +11,7 @@ I am an avid traveller and AI enthusiast. I like to plan my travels diligently a
 - FastAPI
 - [HuggingFace](https://huggingface.co/)
 - [MistralAI](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)
+- [Open-Meteo Weather API](https://open-meteo.com/en/docs/historical-weather-api?daily=temperature_2m_max,temperature_2m_min,temperature_2m_mean,daylight_duration,sunrise,sunset&hourly=)
 
 ## How to use this app?
 

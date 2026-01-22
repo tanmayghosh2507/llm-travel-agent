@@ -39,7 +39,7 @@ def call_llm(prompt: str):
     except Exception as e:
         return f"Error: {str(e)}", 0
     
-@app.post("/generate-plan")
+@app.post("/generate")
 def generate_plan(req: TravelRequest):
 
     prompt = f"""
